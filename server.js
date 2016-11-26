@@ -3,7 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var port = process.env.PORT || 3000;
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/boilerplate_MEAN';
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/remote';
 
 var path = require('path');
 var logger = require('morgan');
@@ -37,7 +37,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-app.use('/firstController', require('./controllers/firstControllers.js'));
+app.use('/api/devices', require('./controllers/deviceControllers.js'));
+app.use('/api/types', require('./controllers/typeControllers.js'));
 
 
 

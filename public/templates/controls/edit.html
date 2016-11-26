@@ -1,0 +1,42 @@
+<nav>
+  <a ui-sref="type_show">< {{type.activeType.name}}</a>
+  {{type.activeControl.name}}
+  <a ng-click='type.updateActiveControl()'>Done</a>
+</nav>
+
+<section class='heading'>
+  <div class="headingLine">
+    Name:
+    <input ng-model='type.activeControl.name'>
+  </div>
+  <div class="headingLine">
+    HTTP Verb:
+    <input ng-model='type.activeControl.httpVerb'>
+  </div>
+  <div class="headingLine">
+    HTTP URL:
+    <input ng-model='type.activeControl.httpURL'>
+  </div>
+</section>
+
+
+Control Info <button ng-click='type.testCase()'>Test</button>
+<section class='controlInfo'>
+  Type:
+  <select class="" name="" ng-model='type.activeControl.type' ng-change='frank = type.activeControl.type'>
+    <option value="button">button</option>
+    <option value="slider">slider</option>
+    <option value="select">select</option>
+  </select>
+  <div class="select" ng-repeat='option in type.activeControl.options track by $index'>
+    Option {{$index+1}}:
+    <input ng-model='option.name'>
+  </div>
+</section>
+
+<br>
+<br>
+<br>
+<div class="delete" ng-click='type.deleteControl()'>
+  delete
+</div>

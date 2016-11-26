@@ -1,0 +1,24 @@
+<nav>
+  <a ui-sref="type_show">< {{type.activeType.name}}</a>
+  {{type.activeControl.name}}
+  <a ui-sref="control_edit">Edit</a>
+</nav>
+
+<section class='heading'>
+  <div class="headingLine">
+    Name: {{type.activeControl.name}}
+  </div>
+  <div class="headingLine">
+    HTTP Verb: {{type.activeControl.httpVerb}}
+  </div>
+  <div class="headingLine">
+    HTTP URL: {{type.activeControl.httpURL}}
+  </div>
+</section>
+
+<section class='controlInfo'>
+  Type: {{type.activeControl.type}}
+  <div class="select" ng-repeat='option in type.activeControl.options track by $index'>
+    Option {{$index+1}}: {{option.name}}
+  </div>
+</section>

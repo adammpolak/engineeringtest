@@ -1,0 +1,22 @@
+<nav>
+  <a ui-sref="types_all">< Types</a>
+  {{type.activeType.name}}
+  <a ui-sref="type_edit">Edit</a>
+</nav>
+
+<section class='heading'>
+<div class="lineItem">
+Name: {{type.activeType.name}}
+</div>
+<div class="lineItem">
+API: {{type.activeType.api}}
+</div>
+</section>
+
+Controls
+<!-- <a ui-sref="control_show">Example Control</a> -->
+<section>
+<div class="lineItem" ng-repeat='control in type.activeType.controls track by $index' ng-click='type.showControl($index)'>
+  {{control.name}}
+</div>
+</section>
