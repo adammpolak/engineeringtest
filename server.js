@@ -3,7 +3,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var port = process.env.PORT || 3000;
-var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/remote';
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost/remote';
 
 var path = require('path');
 var logger = require('morgan');
