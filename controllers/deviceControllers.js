@@ -7,9 +7,9 @@ var Device = require('../models/device');
 // ROUTE :: GET --------------------------all projects
 router.get('/', function(req, res){
   Device.find({}).exec()
-  .then(function(allProjects){
-    console.log(allProjects);
-    res.json(allProjects);
+  .then(function(allDevices){
+    console.log(allDevices);
+    res.json(allDevices);
   })
   .catch(function(err){
     console.log(err);
@@ -33,7 +33,7 @@ router.post('/', function(req, res){
 
 // // ROUTE :: GET ---------------------------one project
 // router.get('/:pId', function(req, res){
-//   Project.findById(req.params.pId).exec()
+//   Device.findById(req.params.pId).exec()
 //   .then(function(project){
 //     console.log(project);
 //     res.json(project);
@@ -46,7 +46,7 @@ router.post('/', function(req, res){
 
 // ROUTE :: UPDATE ------------------------one project
 router.put('/', function(req, res){
-  Project.findOneAndUpdate({_id: req.body._id}, req.body, {new: true})
+  Device.findOneAndUpdate({_id: req.body._id}, req.body, {new: true})
   .then(function(device){
     console.log(device);
     res.json(device);

@@ -1,7 +1,7 @@
 <nav>
-  <a ui-sref="type_show">< {{type.activeType.name}}</a>
+  <a ui-sref="type_edit">< {{type.activeType.name}}</a>
   {{type.activeControl.name}}
-  <a ng-click='type.updateActiveControl("show")'>Done</a>
+  <a ng-click='type.updateActiveControl("edit")'>Done</a>
 </nav>
 
 <section class='heading'>
@@ -40,6 +40,6 @@ Control Info
 <br>
 <br>
 <br>
-<div class="delete" ng-click='type.deleteControl()'>
+<div class="delete" ng-click='type.newTypeNewControlDeleteControl()'>
   delete
 </div>

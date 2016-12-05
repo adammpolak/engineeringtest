@@ -1,5 +1,42 @@
 <nav>
   <a ui-sref="devices_all">< Devices</a>
-  Example Device
-  <a ui-sref="device_edit">Edit</a>
+  {{device.activeDevice.name}}
+  <a ui-sref="device_edit" ng-if='device.currentUserAdmin'>Edit</a>
 </nav>
+
+<section class='heading'>
+<div class="lineItem">
+Name: {{device.activeDevice.name}}
+</div>
+<div class="lineItem">
+Type: {{device.activeDevice.device_type.name}}
+</div>
+</section>
+
+Controls
+<section>
+<div class="lineItem" ng-repeat='control in device.activeDevice.device_type.controls track by $index' >
+
+  <div class="" ng-if="control.type=='select'">
+    {{control.name}}
+    <label class="" ng-repeat='option in control.options track by $index'>
+      {{option.name}}
+      <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='$index+1'>
+    </label>
+  </div>
+  <div class="" ng-if="control.type=='slider'">
+    {{control.name}}
+    <input type='range' ng-model='control.value' ng-change='device.valueChange()' min='0' max='100'>
+    slider
+  </div>
+  <div class="" ng-if="control.type=='button'">
+    {{control.name}}
+    <label class="">
+      Off
+      <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='0'>
+      On
+      <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='1'>
+    </label>
+  </div>
+</div>
+</section>

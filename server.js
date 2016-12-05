@@ -39,6 +39,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use('/api/devices', require('./controllers/deviceControllers.js'));
 app.use('/api/types', require('./controllers/typeControllers.js'));
+app.use('/api/helpers', require('./controllers/helpersController.js'));
+app.use('/api/users', require('./controllers/usersController.js'));
 
 
 

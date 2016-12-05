@@ -1,9 +1,13 @@
-<nav>
+<nav ng-if='device.currentUserAdmin'>
   <a ui-sref="devices_all">Devices</a>
   <a ui-sref="types_all">Types</a>
 </nav>
 
 <header>
   Devices
-  <a ui-sref="device_new">+</a>
+  <button ng-click='device.newDeviceFunction()' ng-if='device.currentUserAdmin'>new +</button>
 </header>
+
+<div class="main_list" ng-repeat='item in device.allDevices track by $index' ng-click='device.showDevice($index)'>
+  {{item.name}}
+</div>

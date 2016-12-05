@@ -20,12 +20,16 @@ Controls
 <section>
 <div class="lineItem" ng-repeat='control in type.activeType.controls track by $index' ng-click='type.showControl($index)'>
   {{control.name}}
-  <a ui-sref="control_edit">Edit</a>
+  <a ui-sref="type_edit_control_edit" ng-click='type.selectCheck()'>Edit</a>
 </div>
-<div class="addControl" ui-sref="control_new">
+<div class="addControl" ui-sref="type_edit_control_new">
   ( + ) add control
 </div>
 </section>
 
 <br>
 <br>
+<br>
+<div class="delete" ng-click='type.deleteType()'>
+  delete
+</div>

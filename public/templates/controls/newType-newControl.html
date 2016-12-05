@@ -1,4 +1,4 @@
-<form class="newControlForm" ng-submit='type.newTypeNewControl(newControl)'>
+<form class="newControlForm" ng-submit='type.newTypeNewControl()'>
   <nav>
     <a ui-sref="type_new">< {{type.activeType.name}}</a>
     New Control
@@ -9,15 +9,15 @@
   <section class='heading'>
     <div class="headingLine">
       Name:
-      <input ng-model='newControl.name'>
+      <input ng-model='type.activeControl.name'>
     </div>
     <div class="headingLine">
       HTTP Verb:
-      <input ng-model='newControl.httpVerb'>
+      <input ng-model='type.activeControl.httpVerb'>
     </div>
     <div class="headingLine">
       HTTP URL:
-      <input ng-model='newControl.httpURL'>
+      <input ng-model='type.activeControl.httpURL'>
     </div>
   </section>
 
@@ -25,14 +25,17 @@
   Control Info
   <section class='controlInfo'>
     Type:
-    <select class="" name="" ng-model='newControl.type'>
+    <select class="" name="" ng-model='type.activeControl.type' ng-change='type.selectCheck()'>
       <option value="button">button</option>
       <option value="slider">slider</option>
       <option value="select">select</option>
     </select>
-    <div class="select" ng-repeat='option in type.newControl.options track by $index'>
-      Option {{$index+1}}:
-      <input ng-model='option.name'>
+    <div class=""  ng-if='type.activeControlSelect'>
+      <div class="select" ng-repeat='option in type.activeControl.options track by $index'>
+        Option {{$index+1}}:
+        <input ng-model='option.name'> <button type="button" name="button" ng-click='type.removeOption($index)'>remove</button>
+      </div>
+      <button type="button" name="button" ng-click='type.addOption()'>Add Option</button>
     </div>
   </section>
 

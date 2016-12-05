@@ -1,6 +1,6 @@
-<form class="newControlForm" ng-submit='type.newControl(newControl)'>
+<form class="newControlForm" ng-submit='type.newTypeNewControl(newControl)'>
   <nav>
-    <a ui-sref="type_show">< {{type.activeType.name}}</a>
+    <a ui-sref="type_edit">< {{type.activeType.name}}</a>
     New Control
     <button type="submit"> Done </button>
   </nav>
@@ -25,17 +25,14 @@
   Control Info
   <section class='controlInfo'>
     Type:
-    <select class="" name="" ng-model='type.activeControl.type' ng-change='type.selectCheck()'>
+    <select class="" name="" ng-model='newControl.type'>
       <option value="button">button</option>
       <option value="slider">slider</option>
       <option value="select">select</option>
     </select>
-    <div class=""  ng-if='type.activeControlSelect'>
-      <div class="select" ng-repeat='option in type.activeControl.options track by $index'>
-        Option {{$index+1}}:
-        <input ng-model='option.name'> <button type="button" name="button" ng-click='type.removeOption($index)'>remove</button>
-      </div>
-      <button type="button" name="button" ng-click='type.addOption()'>Add Option</button>
+    <div class="select" ng-repeat='option in type.newControl.options track by $index'>
+      Option {{$index+1}}:
+      <input ng-model='option.name'>
     </div>
   </section>
 
