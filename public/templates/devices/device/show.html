@@ -15,7 +15,7 @@ Type: {{device.activeDevice.device_type.name}}
 
 Controls
 <section>
-<div class="lineItem" ng-repeat='control in device.activeDevice.device_type.controls track by $index' >
+<div class="lineItem" ng-repeat='control in device.activeDevice.device_type.controls' >
 
   <div class="" ng-if="control.type=='select'">
     {{control.name}}
@@ -27,7 +27,6 @@ Controls
   <div class="" ng-if="control.type=='slider'">
     {{control.name}}
     <input type='range' ng-model='control.value' ng-change='device.valueChange()' min='0' max='100'>
-    slider
   </div>
   <div class="" ng-if="control.type=='button'">
     {{control.name}}

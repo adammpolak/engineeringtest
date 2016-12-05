@@ -1,7 +1,7 @@
 <nav>
   <a ui-sref="devices_all">< Devices</a>
   {{device.activeDevice.name}}
-  <a ng-click='device.updateActiveDevice()'>Done</a>
+  <a ng-click='device.updateActiveDevice(device_type)'>Done</a>
 </nav>
 
 <section class='heading'>
@@ -11,10 +11,17 @@ Name:
 </div>
 <div class="lineItem">
   Type:
-  <select class="" ng-model='device.activeDevice.device_type'>
-    <option ng-repeat='type in device.allTypes track by $index' ng-value='{{type}}' selected='device.activeDevice.device_type'>
+  <select class="" ng-model='device_type'>
+    <option ng-repeat='type in device.allTypes track by $index' value='{{type}}'>
       {{type.name}}
     </option>
   </select>
 </div>
 </section>
+
+<br>
+<br>
+<br>
+<div class="delete" ng-click='device.deleteDevice()'>
+  delete
+</div>

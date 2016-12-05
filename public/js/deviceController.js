@@ -35,14 +35,15 @@
     };
     this.getTypes();
     this.activeDevice = JSON.parse(sessionStorage.getItem('activeDevice'));
+    this.activeDeviceIndex = JSON.parse(sessionStorage.getItem('activeDeviceIndex'));
 
     this.showDevice = function(index) {
       $state.go('device_show');
       sessionStorage.setItem('activeDevice', JSON.stringify(self.allDevices[index]));
+      sessionStorage.setItem('activeDeviceIndex', JSON.stringify(index))
     };
 
     this.valueChange = function(value) {
-      console.log(self.activeDevice);
       sessionStorage.setItem('activeDevice', JSON.stringify(self.activeDevice))
       $http.put(`/api/devices`, self.activeDevice)
       .then(function(response){
@@ -50,12 +51,19 @@
       })
     }
 
-    this.updateActiveDevice = function () {
-      //update the active control in local storage
+    this.updateActiveDevice = function (device_type) {
+      var device_type = JSON.parse(device_type)
+
+      self.activeDevice.device_type.name = device_type.name;
+      self.activeDevice.device_type.api = device_type.api;
+      self.activeDevice.device_type.controls = device_type.controls;
+
+      // update the active control in local storage
       sessionStorage.setItem('activeDevice', JSON.stringify(self.activeDevice))
       //update in the database
       $http.put(`/api/devices`, self.activeDevice)
       .then(function(response){
+        $state.go('device_show')
         console.log(response);
       })
     }
@@ -68,18 +76,25 @@
 
     this.addNewDevice = function(device_type) {
       var device_type = JSON.parse(device_type)
-
       self.activeDevice.device_type.name = device_type.name;
       self.activeDevice.device_type.api = device_type.api;
       self.activeDevice.device_type.controls = device_type.controls;
-
+      //update the active control in local storage
+      sessionStorage.setItem('activeDevice', JSON.stringify(self.activeDevice))
       $http.post('/api/devices', self.activeDevice)
       .then(function(response) {
-        $state.go('devices_all');
+        $state.go('device_show');
       })
       .catch(function(err) {
         console.log(err)
       });
+    }
+
+    this.deleteDevice = function () {
+      $http.delete(`/api/devices/${self.activeDevice._id}`)
+      .then(function(response){
+        $state.go('devices_all');
+      })
     }
 
   }
