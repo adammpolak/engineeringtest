@@ -51,12 +51,18 @@
       })
     }
 
-    this.updateActiveDevice = function (device_type) {
-      var device_type = JSON.parse(device_type)
+    this.updateActiveDevice = function () {
+      if (JSON.parse(sessionStorage.getItem('activeDevice')).device_type.name != self.activeDevice.device_type.name) {
+        for (var x = 0; x<self.allTypes.length; x++) {
+          if(self.allTypes[x].name == self.activeDevice.device_type.name) {
+            self.activeDevice.device_type = {}
+            self.activeDevice.device_type.name = self.allTypes[x].name;
+            self.activeDevice.device_type.api = self.allTypes[x].api;
+            self.activeDevice.device_type.controls = self.allTypes[x].controls;
+          }
+        }
+      }
 
-      self.activeDevice.device_type.name = device_type.name;
-      self.activeDevice.device_type.api = device_type.api;
-      self.activeDevice.device_type.controls = device_type.controls;
 
       // update the active control in local storage
       sessionStorage.setItem('activeDevice', JSON.stringify(self.activeDevice))
@@ -68,19 +74,6 @@
       })
     }
 
-    this.editDeviceSelectArray = function(){
-      // console.log(self.activeDevice.device_type);
-      self.selectArray = [];
-      for (var x = 0; x < self.allTypes.length; x++) {
-        if (self.allTypes[x].name === self.activeDevice.device_type.name) {
-          self.selectArray.push(self.activeDevice.device_type)
-        } else {
-          self.selectArray.push(self.allTypes[x])
-        }
-      }
-      sessionStorage.setItem('selectArray', JSON.stringify(self.selectArray))
-    }
-    self.selectArray = JSON.parse(sessionStorage.getItem('selectArray'));
 
 
     this.newDeviceFunction = function() {
