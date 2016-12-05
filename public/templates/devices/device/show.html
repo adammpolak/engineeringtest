@@ -1,7 +1,7 @@
 <nav>
   <a ui-sref="devices_all">< Devices</a>
   {{device.activeDevice.name}}
-  <a ui-sref="device_edit" ng-if='device.currentUserAdmin'>Edit</a>
+  <a ui-sref="device_edit" ng-if='device.currentUserAdmin' ng-click='device.editDeviceSelectArray()'>Edit</a>
 </nav>
 
 <section class='heading'>

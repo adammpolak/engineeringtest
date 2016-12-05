@@ -68,6 +68,21 @@
       })
     }
 
+    this.editDeviceSelectArray = function(){
+      // console.log(self.activeDevice.device_type);
+      self.selectArray = [];
+      for (var x = 0; x < self.allTypes.length; x++) {
+        if (self.allTypes[x].name === self.activeDevice.device_type.name) {
+          self.selectArray.push(self.activeDevice.device_type)
+        } else {
+          self.selectArray.push(self.allTypes[x])
+        }
+      }
+      sessionStorage.setItem('selectArray', JSON.stringify(self.selectArray))
+    }
+    self.selectArray = JSON.parse(sessionStorage.getItem('selectArray'));
+
+
     this.newDeviceFunction = function() {
       self.activeDevice = {name: '', device_type: {}};
       sessionStorage.setItem('activeDevice', JSON.stringify(self.activeDevice))

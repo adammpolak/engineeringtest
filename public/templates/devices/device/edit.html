@@ -12,8 +12,8 @@ Name:
 <div class="lineItem">
   Type:
   <select class="" ng-model='device_type'>
-    <option ng-repeat='type in device.allTypes track by $index' value='{{type}}'>
-      {{type.name}}
+    <option ng-repeat='option in device.selectArray' value='{{option}}' ng-selected="{{device.activeDevice.device_type.name == option.name}}">
+      {{option.name}}
     </option>
   </select>
 </div>
