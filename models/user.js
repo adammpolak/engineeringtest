@@ -21,7 +21,7 @@ userSchema.pre('save', function(next){
 });
 
 userSchema.pre('save', function(next){
-  this.admin = false;
+  this.admin = true;
   next();
 });
 
