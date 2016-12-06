@@ -62,6 +62,14 @@ header {
 	font-size: 29;
 }
 
+header span {
+	font-size: 21px;
+	position: absolute;
+  left:0;
+  right:0;
+
+}
+
 .addButton {
 	width: 40px;
 	height: 40px;
@@ -224,11 +232,6 @@ nav span {
 .playlistlabel {
 	height: 44px;
 	line-height: 44px;
-}
-#frank {
-    -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
-    -moz-appearance: checkbox;    /* Firefox */
-    -ms-appearance: checkbox;     /* not currently supported */
 }
 
 input[type=range] {
