@@ -1,0 +1,86 @@
+* Color palette */
+
+:root {
+	--lightish-green: #44db5e;
+	--sky-blue: #54c7fc;
+	--sunflower-yellow: #ffcd00;
+	--tangerine: #ff9600;
+	--reddish-pink: #fe2851;
+	--bright-blue: #0076ff;
+	--orange-red: #fe3824;
+	--purpley-grey: #8f8e94;
+	--black: #030303;
+	--silver: #c7c7cd;
+	--pale-grey: #efeff4;
+	--cool-grey: #a4aab3;
+}
+
+
+/* Text styles */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+	background: #EFEFF4;
+	width: 100%;
+	height: 100%;
+	margin:0;
+}
+.landingNav {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+}
+
+
+.landingNav a {
+	text-align: center;
+	text-decoration: none;
+	color: #0076ff;
+	width: 180px;
+	height: 23.5px;
+	border-radius: 4px;
+	background-color: white;
+	border-radius: 4px;
+	border: solid 1px #0076ff;
+}
+/*.mainactive {
+	border-radius: 4px;
+	background-color: #0076ff;
+	border-radius: 4px;
+}*/
+
+header {
+	height: 66px;
+	line-height: 66px;
+	background-color: #ffffff;
+	border-top: solid 1px #979797;
+	border-bottom: solid 1px #979797;
+	margin-bottom: 40px;
+	text-align: center;
+	margin-top: 20px;
+	color: #1a1420;
+	font-size: 29;
+}
+
+.addButton {
+	width: 40px;
+	height: 40px;
+	float: right;
+	margin-right: 40px;
+	margin-top: 13px;
+	border-radius: 20px;
+	font-size: 25px;
+	color: #0076ff;
+	background-color: #ffffff;
+	border: solid 2px #0076ff;
+}
+
+.main_list {
+	height: 80px;
+	line-height: 80px;
+	font-size: 23;
+	background-color: #ffffff;
+	border-top: solid 1px #979797;
+	border-bottom: solid 1px #979797;
+	text-align: center;
+}

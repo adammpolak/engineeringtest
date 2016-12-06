@@ -14,18 +14,16 @@
         console.log('err', err)
       })
 
-    // this.getDevices = function() {
+    var getDevices = function() {
       $http.get('/api/devices/')
       .then(function(response) {
         self.allDevices = response.data;
-        console.log(self.allDevices);
-        sessionStorage.setItem('allDevices', JSON.stringify(self.allDevices))
       })
       .catch(function(err) {
         console.log('err', err);
       })
-    // };
-    // this.getDevices();
+    };
+    getDevices();
     this.getTypes = function() {
       $http.get('/api/types/')
       .then(function(response) {
@@ -35,17 +33,14 @@
         console.log('err', err);
       })
     };
-    // this.getTypes();
-    self.allDevices = JSON.parse(sessionStorage.getItem('allDevices'))
-    if (JSON.parse(sessionStorage.getItem('activeDeviceIndex'))) {
-      JSON.parse(sessionStorage.getItem('activeDeviceIndex'))
-      self.activeDevice = self.allDevices[JSON.parse(sessionStorage.getItem('activeDeviceIndex'))];
-    }
-    console.log(self.activeDevice);
+    this.getTypes();
+    // this.activeDevice = JSON.parse(sessionStorage.getItem('activeDevice'));
 
-    this.showDevice = function(index) {
+    this.showDevice = function(id) {
       $state.go('device_show');
-      sessionStorage.setItem('activeDeviceIndex', JSON.stringify(index))
+      // sessionStorage.setItem('activeDevice', JSON.stringify(self.allDevices[index]));
+      sessionStorage.setItem('activeDeviceIndex', JSON.stringify(id))
+      sessionStorage.setItem('activeDeviceId', JSON.stringify(id))
     };
 
     this.valueChange = function(value) {
@@ -54,13 +49,20 @@
       .then(function(response){
         console.log(response);
       })
-      $http.get('/api/devices/')
-      .then(function(response) {
-        self.allDevices = response.data;
-        console.log(self.allDevices);
-        sessionStorage.setItem('allDevices', JSON.stringify(self.allDevices))
-      })
     }
+    this.findDevice = function() {
+      if ($state.current.name == 'device_show') {
+        self.activeDeviceId = JSON.parse(sessionStorage.getItem('activeDeviceId'));
+        $http.get(`/api/devices/${self.activeDeviceId}`)
+        .then(function(response){
+          self.activeDevice = response.data;
+          sessionStorage.setItem('activeDevice', JSON.stringify(self.activeDevice))
+        })
+      } else {
+        this.activeDevice = JSON.parse(sessionStorage.getItem('activeDevice'));
+      }
+    }
+    this.findDevice()
 
     this.updateActiveDevice = function () {
       if (JSON.parse(sessionStorage.getItem('activeDevice')).device_type.name != self.activeDevice.device_type.name) {
@@ -76,7 +78,7 @@
 
 
       // update the active control in local storage
-      sessionStorage.setItem('activeDevice', JSON.stringify(self.activeDevice))
+      sessionStorage.setItem('activeDeviceId', JSON.stringify(self.activeDevice._id))
       //update in the database
       $http.put(`/api/devices`, self.activeDevice)
       .then(function(response){
@@ -84,8 +86,6 @@
         console.log(response);
       })
     }
-
-
 
     this.newDeviceFunction = function() {
       self.activeDevice = {name: '', device_type: {}};

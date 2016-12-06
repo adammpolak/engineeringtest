@@ -31,18 +31,18 @@ router.post('/', function(req, res){
   })
 });
 
-// // ROUTE :: GET ---------------------------one project
-// router.get('/:pId', function(req, res){
-//   Device.findById(req.params.pId).exec()
-//   .then(function(project){
-//     console.log(project);
-//     res.json(project);
-//   })
-//   .catch(function(err){
-//     console.log(err);
-//     res.status(500);
-//   })
-// });
+// ROUTE :: GET ---------------------------one project
+router.get('/:pId', function(req, res){
+  Device.findById(req.params.pId).exec()
+  .then(function(device){
+    console.log(device);
+    res.json(device);
+  })
+  .catch(function(err){
+    console.log(err);
+    res.status(500);
+  })
+});
 
 // ROUTE :: UPDATE ------------------------one project
 router.put('/', function(req, res){

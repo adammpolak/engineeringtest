@@ -1,11 +1,11 @@
-<nav>
+<nav class='landingNav'>
   <a ui-sref="devices_all">Devices</a>
   <a ui-sref="types_all">Types</a>
 </nav>
 
 <header>
   Types
-  <button ng-click='type.newTypeFunction()'>new +</button>
+  <button ng-click='type.newTypeFunction()' class='addButton'>+</button>
 </header>
 
 <div class="main_list" ng-repeat='item in type.allTypes track by $index' ng-click='type.showType($index)'>
