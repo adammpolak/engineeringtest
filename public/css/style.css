@@ -96,20 +96,22 @@ header span {
 }
 
 .navigation_header {
-	display: flex;
-	justify-content: space-between;
 	background-color: #ffffff;
 	height: 65px;
 	line-height: 65px;
 	border: solid 1px #979797;
 	margin-bottom: 46px;
+	text-align: center;
 
 }
+
+
 
 .left {
 	text-decoration: none;
 	margin-left: 20px;
 	color: #0076ff;
+	float: left;
 }
 nav span {
 	font-size: 23px;
@@ -120,6 +122,7 @@ nav span {
 	text-decoration: none;
 	margin-right: 20px;
 	color: #0076ff;
+	float: right;
 }
 
 .lineItem {
@@ -229,9 +232,27 @@ nav span {
 	align-items: center;
 }
 
+.landinginput {
+	border: none;
+	text-align: center;
+}
+
 .playlistlabel {
 	height: 44px;
 	line-height: 44px;
+}
+
+.landing {
+	position: absolute;
+	right: 0;
+	left: 0;
+	text-align: center;
+	display: inline-block;
+	height: 220px;
+	background: white;
+	width: 150px;
+	margin: auto;
+	border-radius: 10px
 }
 
 input[type=range] {
