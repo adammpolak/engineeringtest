@@ -27,7 +27,7 @@
             alert('Nice try nerd, that is not a user, get it together')
           } else {
             self.user = res.data.user;
-            console.log(self.user)
+            // console.log(self.user)
             $state.go('devices_all', {url: '/devices'});
           }
         })

@@ -14,16 +14,18 @@
         console.log('err', err)
       })
 
-    var getDevices = function() {
+    // this.getDevices = function() {
       $http.get('/api/devices/')
       .then(function(response) {
         self.allDevices = response.data;
+        console.log(self.allDevices);
+        sessionStorage.setItem('allDevices', JSON.stringify(self.allDevices))
       })
       .catch(function(err) {
         console.log('err', err);
       })
-    };
-    getDevices();
+    // };
+    // this.getDevices();
     this.getTypes = function() {
       $http.get('/api/types/')
       .then(function(response) {
@@ -33,13 +35,16 @@
         console.log('err', err);
       })
     };
-    this.getTypes();
-    this.activeDevice = JSON.parse(sessionStorage.getItem('activeDevice'));
-    this.activeDeviceIndex = JSON.parse(sessionStorage.getItem('activeDeviceIndex'));
+    // this.getTypes();
+    self.allDevices = JSON.parse(sessionStorage.getItem('allDevices'))
+    if (JSON.parse(sessionStorage.getItem('activeDeviceIndex'))) {
+      JSON.parse(sessionStorage.getItem('activeDeviceIndex'))
+      self.activeDevice = self.allDevices[JSON.parse(sessionStorage.getItem('activeDeviceIndex'))];
+    }
+    console.log(self.activeDevice);
 
     this.showDevice = function(index) {
       $state.go('device_show');
-      sessionStorage.setItem('activeDevice', JSON.stringify(self.allDevices[index]));
       sessionStorage.setItem('activeDeviceIndex', JSON.stringify(index))
     };
 
@@ -48,6 +53,12 @@
       $http.put(`/api/devices`, self.activeDevice)
       .then(function(response){
         console.log(response);
+      })
+      $http.get('/api/devices/')
+      .then(function(response) {
+        self.allDevices = response.data;
+        console.log(self.allDevices);
+        sessionStorage.setItem('allDevices', JSON.stringify(self.allDevices))
       })
     }
 
