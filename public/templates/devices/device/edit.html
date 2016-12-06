@@ -1,27 +1,24 @@
-<nav>
-  <a ui-sref="devices_all">< Devices</a>
-  {{device.activeDevice.name}}
-  <a ng-click='device.updateActiveDevice()'>Done</a>
+<nav class='navigation_header'>
+  <a ui-sref="devices_all" class="left">< Devices</a>
+  <span>{{device.activeDevice.name}}</span>
+  <a ui-sref="device_show" ng-click='device.updateActiveDevice()' class='right'>Done</a>
 </nav>
 
 <section class='heading'>
 <div class="lineItem">
-Name:
-<input ng-model='device.activeDevice.name'>
+<span class='lineItemLabel'>Name</span>
+<input ng-model='device.activeDevice.name' class='textInput'>
 </div>
 <div class="lineItem">
-  Type:
-  <select class="" ng-model='device.activeDevice.device_type.name'>
-    <option ng-repeat='option in device.allTypes' value='{{option.name}}'>
+  <span class='lineItemLabel'>Type</span>
+  <select class="textInput" ng-model='device.activeDevice.device_type.name'>
+    <option ng-repeat='option in device.allTypes' value='{{option.name}}' class='textInput'>
       {{option.name}}
     </option>
   </select>
 </div>
 </section>
 
-<br>
-<br>
-<br>
 <div class="delete" ng-click='device.deleteDevice()'>
-  delete
+  Delete
 </div>

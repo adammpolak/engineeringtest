@@ -1,41 +1,52 @@
-<nav>
-  <a ui-sref="devices_all">< Devices</a>
-  {{device.activeDevice.name}}
-  <a ui-sref="device_edit" ng-if='device.currentUserAdmin' ng-click='device.editDeviceSelectArray()'>Edit</a>
+<nav class='navigation_header'>
+  <a ui-sref="devices_all" class="left">< Devices</a>
+  <span>{{device.activeDevice.name}}</span>
+  <a ui-sref="device_edit" ng-if='device.currentUserAdmin' ng-click='device.editDeviceSelectArray()' class='right'>Edit</a>
 </nav>
 
 <section class='heading'>
 <div class="lineItem">
-Name: {{device.activeDevice.name}}
+<span class='lineItemLabel'>Name</span><span class='lineItemValue'>{{device.activeDevice.name}}</span>
 </div>
 <div class="lineItem">
-Type: {{device.activeDevice.device_type.name}}
+<span class='lineItemLabel'>Type</span><span class='lineItemValue'>{{device.activeDevice.device_type.name}}</span>
 </div>
 </section>
 
-Controls
+<div class='controlHeading'>
+  Controls
+</div>
 <section>
-<div class="lineItem" ng-repeat='control in device.activeDevice.device_type.controls' >
+<div class="" ng-repeat='control in device.activeDevice.device_type.controls track by $index'>
+  <div class="selecttype" ng-if="control.type=='select'">
+    <span class='lineItemLabel playlistlabel'>{{control.name}}</span>
+    <span class='lineItemValue playlistlabel'>{{device.activeDevice.device_type.controls[$index].options[control.value-1].name}}</span>
+    <div class="clear">
 
-  <div class="" ng-if="control.type=='select'">
-    {{control.name}}
-    <label class="" ng-repeat='option in control.options track by $index'>
-      {{option.name}}
-      <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='$index+1'>
-    </label>
+    </div>
+      <label class="controloptions options" ng-repeat-start='option in control.options track by $index' class='tester'>
+        {{option.name}}
+        <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='$index+1' class='test'>
+      </label>
+      <div ng-repeat-end class="clear">
+      </div>
   </div>
-  <div class="" ng-if="control.type=='slider'">
-    {{control.name}}
-    <input type='range' ng-model='control.value' ng-change='device.valueChange()' min='0' max='100'>
+  <div class="lineItemControl" ng-if="control.type=='slider'">
+    <span class='lineItemLabel'>{{control.name}}</span>
+    <div class="controloptions tester" >
+      <input type='range' ng-model='control.value' ng-change='device.valueChange()' min='0' max='100'>
+    </div>
   </div>
-  <div class="" ng-if="control.type=='button'">
-    {{control.name}}
-    <label class="">
-      Off
-      <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='0'>
-      On
-      <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='1'>
-    </label>
+  <div class="lineItemControl" ng-if="control.type=='button'">
+    <span class='lineItemLabel'>{{control.name}}</span>
+    <div class="controloptions" >
+      <label class="">
+        Off
+        <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='0' class='test'>
+        On
+        <input type='radio' ng-model='control.value' ng-change='device.valueChange()' ng-value='1' class='test'>
+      </label>
+    </div>
   </div>
 </div>
 </section>

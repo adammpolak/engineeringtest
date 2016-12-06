@@ -1,18 +1,18 @@
-<nav>
-  <a ui-sref="devices_all">< Devices</a>
-  New Device
-  <button ng-click='device.addNewDevice(device_type)'>Done</button>
+<nav class='navigation_header'>
+  <a ui-sref="devices_all" class="left">< Devices</a>
+  <span>New Device</span>
+  <button ng-click='device.addNewDevice(device_type)' class='rightButton'>Done</button>
 </nav>
 
 <section class='heading'>
   <div class="lineItem">
-  Name:
-  <input ng-model='device.activeDevice.name'>
+  <span class='lineItemLabel'>Name</span>
+  <input ng-model='device.activeDevice.name' class='textInput' placeholder="___________________________________">
   </div>
 
   <div class="lineItem">
-    Type:
-    <select class="" ng-model='device_type'>
+    <span class='lineItemLabel'>Type</span>
+    <select class="textInput" ng-model='device_type'>
       <option ng-repeat='type in device.allTypes track by $index' value='{{type}}'>
         {{type.name}}
       </option>

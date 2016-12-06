@@ -5,7 +5,7 @@
 
 <header>
   Devices
-  <button ng-click='device.newDeviceFunction()' ng-if='device.currentUserAdmin' class='addButton'>+</button>
+  <button ng-click='device.newDeviceFunction()' ng-if='device.currentUserAdmin' class='addButton' ui-sref="device_new">+</button>
 </header>
 
 <div class="main_list" ng-repeat='item in device.allDevices track by $index' ng-click='device.showDevice(item._id)'>
