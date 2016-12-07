@@ -209,7 +209,8 @@
     };
 
     this.goToEditControl = function(index) {
-      console.log('frank');
+      sessionStorage.setItem('activeControl', JSON.stringify(self.activeType.controls[index]));
+      self.activeControl = self.activeType.controls[index];
       if (self.activeControl.type == 'select') {
         $scope.safeApply(function(){
           self.activeControlSelect = true;
@@ -219,7 +220,6 @@
           self.activeControlSelect = false;
         })
       }
-      sessionStorage.setItem('activeControl', JSON.stringify(self.activeType.controls[index]));
       sessionStorage.setItem('activeControlIndex', JSON.stringify(index));
       $state.go('type_edit_control_edit')
     }
