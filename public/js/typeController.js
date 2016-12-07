@@ -242,6 +242,12 @@
     this.removeOption = function(index) {
       self.activeControl.options.splice(index,1);
     }
+    this.logout = function() {
+    $http.delete('/api/users/logout')
+      .then(function(response){
+        $state.go('landing', {url: '/'});
+      });
+    }
 
   }
 })()

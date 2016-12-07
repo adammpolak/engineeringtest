@@ -123,6 +123,11 @@ header span {
 
 }
 
+.logout {
+  border: none;
+  float: right;
+}
+
 .removeOption {
 	width: 30px;
 	height: 30px;

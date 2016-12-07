@@ -116,6 +116,12 @@
         $state.go('devices_all');
       })
     }
+    this.logout = function() {
+    $http.delete('/api/users/logout')
+      .then(function(response){
+        $state.go('landing', {url: '/'});
+      });
+    }
 
   }
 })()
