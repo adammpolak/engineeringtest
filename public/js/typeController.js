@@ -71,8 +71,16 @@
       sessionStorage.setItem('activeType', JSON.stringify(self.activeType))
       $state.go('type_new')
     }
+    this.editTypeNewControl = function() {
+      self.activeControl = {name: '', httpVerb: '', httpURL: '', type: '', options: []}
+      sessionStorage.setItem('activeControl', JSON.stringify(self.activeControl));
+      sessionStorage.setItem('activeType', JSON.stringify(self.activeType))
+      $state.go('type_edit_control_new')
+    }
 
     this.newTypeGoToNewControl = function() {
+      self.activeControl = {name: '', httpVerb: '', httpURL: '', type: '', options: []}
+      sessionStorage.setItem('activeControl', JSON.stringify(self.activeControl));
       sessionStorage.setItem('activeType', JSON.stringify(self.activeType))
       $state.go('type_new_control_new')
       this.activeControlSelect = null;
@@ -83,6 +91,24 @@
       sessionStorage.setItem('activeType', JSON.stringify(self.activeType))
       $state.go('type_new')
     }
+    this.editTypeCreateControl = function() {
+      self.activeType.controls.push(self.activeControl)
+      //update the active control in local storage
+      sessionStorage.setItem('activeType', JSON.stringify(self.activeType))
+      //update in the database
+      $http.put(`/api/types`, self.activeType)
+      .then(function(response){
+        console.log(response);
+        $state.go('type_edit')
+      })
+    }
+    this.newTypeUpdateControl = function() {
+      //update the active type in controller and sessionStorage
+      self.activeType.controls[self.activeControlIndex] = self.activeControl;
+      sessionStorage.setItem('activeType', JSON.stringify(self.activeType));
+      $state.go('type_new')
+    }
+
 
     this.newTypeNewControlDeleteControl = function () {
       //update the activeType in this controller
@@ -181,6 +207,22 @@
         $state.go('type_show')
       })
     };
+
+    this.goToEditControl = function(index) {
+      console.log('frank');
+      if (self.activeControl.type == 'select') {
+        $scope.safeApply(function(){
+          self.activeControlSelect = true;
+        })
+      } else {
+        $scope.safeApply(function(){
+          self.activeControlSelect = false;
+        })
+      }
+      sessionStorage.setItem('activeControl', JSON.stringify(self.activeType.controls[index]));
+      sessionStorage.setItem('activeControlIndex', JSON.stringify(index));
+      $state.go('type_edit_control_edit')
+    }
 
     this.selectCheck = function () {
       if (self.activeControl.type == 'select') {

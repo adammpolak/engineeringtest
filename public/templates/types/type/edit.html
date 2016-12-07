@@ -21,10 +21,11 @@
 <section>
 <div class="lineItemControl" ng-repeat='control in type.activeType.controls track by $index'>
   <span class='typecontrol'>{{control.name}}</span>
-  <a ui-sref="type_edit_control_edit" ng-click='type.selectCheck()'>Edit</a>
+  <a ui-sref="type_edit_control_edit" ng-click=' type.goToEditControl($index)'>Edit</a>
 </div>
 <div class="lineItem" >
-  <button class='addControlButton' ui-sref="type_edit_control_new">+</button> <span>add control</span>
+  <!-- <button class='addControlButton' ui-sref="type_edit_control_new">+</button> -->
+  <button class='addControlButton' ng-click='type.editTypeNewControl()'>+</button> <span>add control</span>
 </div>
 </section>
 
