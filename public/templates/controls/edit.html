@@ -1,39 +1,47 @@
-<nav>
-  <a ui-sref="type_show">< {{type.activeType.name}}</a>
-  {{type.activeControl.name}}
-  <a ng-click='type.updateActiveControl("show")'>Done</a>
+<nav class='navigation_header'>
+<a ui-sref="type_show" class="left">< {{type.activeType.name}}</a>
+<span>{{type.activeControl.name}}</span>
+<a class='right' ng-click='type.updateActiveControl("show")'>Done</a>
 </nav>
 
 <section class='heading'>
-  <div class="headingLine">
-    Name:
-    <input ng-model='type.activeControl.name'>
+  <div class="lineItem">
+    <span class='lineItemLabel'>Name</span>
+    <input ng-model='type.activeControl.name'  class='textInput' placeholder="___________________________________">
   </div>
-  <div class="headingLine">
-    HTTP Verb:
-    <input ng-model='type.activeControl.httpVerb'>
+  <div class="lineItem">
+    <span class='lineItemLabel'>HTTP Verb</span>
+    <input ng-model='type.activeControl.httpVerb' class='textInput' placeholder="___________________________________">
   </div>
-  <div class="headingLine">
-    HTTP URL:
-    <input ng-model='type.activeControl.httpURL'>
+  <div class="lineItem">
+    <span class='lineItemLabel'>HTTP URL</span>
+    <input ng-model='type.activeControl.httpURL' class='textInput' placeholder="___________________________________">
   </div>
 </section>
 
 
-Control Info
-<section class='controlInfo'>
-  Type:
-  <select class="" name="" ng-model='type.activeControl.type' ng-change='type.selectCheck()'>
+<div class='controlHeading'>
+  Control Info
+</div>
+<section class="lineItem">
+  <span class='lineItemLabel'>Type</span>
+  <select class="textInput" name="" ng-model='type.activeControl.type' ng-change='type.selectCheck()'>
     <option value="button">button</option>
     <option value="slider">slider</option>
     <option value="select">select</option>
   </select>
   <div class=""  ng-if='type.activeControlSelect'>
-    <div class="select" ng-repeat='option in type.activeControl.options track by $index'>
-      Option {{$index+1}}:
-      <input ng-model='option.name'> <button type="button" name="button" ng-click='type.removeOption($index)'>remove</button>
+    <div class="lineItem" ng-repeat-start='option in type.activeControl.options track by $index'>
+      <span class='lineItemLabel'>Option {{$index+1}}</span>
+      <input ng-model='option.name' class='textInput' placeholder="___________________________________">
+      <button ng-click='type.removeOption($index)' class='removeOption'>-</button>
     </div>
-    <button type="button" name="button" ng-click='type.addOption()'>Add Option</button>
+
+    <div ng-repeat-end class="clear">
+    </div>
+    <div class="lineItem">
+      <button class='addControlButton' ng-click='type.addOption()'>+</button> <span>add option</span>
+    </div>
   </div>
 </section>
 

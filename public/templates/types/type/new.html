@@ -1,29 +1,30 @@
-<nav>
-  <a ui-sref="types_all">< Types</a>
-  New Type
-  <button ng-click='type.addNewType()'>Done</button>
+<nav class='navigation_header'>
+  <a ui-sref="types_all" class="left">< Types</a>
+    <span>New Type</span>
+  <a ui-sref="type_show" ng-click='type.addNewType()' class='right'>Done</a>
 </nav>
 
 <section class='heading'>
 <div class="lineItem">
-Name:
-<input ng-model='type.activeType.name'>
+<span class='lineItemLabel'>Name</span>
+<input ng-model='type.activeType.name' class='textInput' placeholder="___________________________________">
 </div>
 <div class="lineItem">
-API:
-<input ng-model='type.activeType.api'>
+<span class='lineItemLabel'>API</span>
+<input ng-model='type.activeType.api' class='textInput' placeholder="___________________________________">
 </div>
 </section>
 
-Controls
-<!-- <a ui-sref="control_show">Example Control</a> -->
+<div class='controlHeading'>
+  Controls
+</div>
 <section>
-<div class="lineItem" ng-repeat='control in type.activeType.controls track by $index' ng-click='type.showControl($index)'>
-  {{control.name}}
+<div class="lineItemControl" ng-repeat='control in type.activeType.controls track by $index' ng-click='type.showControl($index)'>
+  <span class='typecontrol'>{{control.name}}</span>
   <a ui-sref="type_new_control_edit">Edit</a>
 </div>
-<div class="addControl" ng-click='type.newTypeGoToNewControl()'>
-  ( + ) add control
+<div class="lineItem" >
+  <button class='addControlButton' ng-click='type.newTypeGoToNewControl()'>+</button><span>add control</span>
 </div>
 </section>
 

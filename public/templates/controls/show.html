@@ -1,24 +1,33 @@
-<nav>
-  <a ui-sref="type_show">< {{type.activeType.name}}</a>
-  {{type.activeControl.name}}
-  <a ui-sref="control_edit">Edit</a>
+<nav class='navigation_header'>
+  <a ui-sref="type_show" class="left">< {{type.activeType.name}}</a>
+  <span>{{type.activeControl.name}}</span>
+  <a ui-sref="control_edit" class='right'>Edit</a>
 </nav>
 
 <section class='heading'>
-  <div class="headingLine">
-    Name: {{type.activeControl.name}}
+  <div class="lineItem">
+    <span class='lineItemLabel'>Name</span>
+    <span class='lineItemValue'>{{type.activeControl.name}}</span>
   </div>
-  <div class="headingLine">
-    HTTP Verb: {{type.activeControl.httpVerb}}
+  <div class="lineItem">
+    <span class='lineItemLabel'>HTTP Verb</span>
+    <span class='lineItemValue'>{{type.activeControl.httpVerb}}</span>
   </div>
-  <div class="headingLine">
-    HTTP URL: {{type.activeControl.httpURL}}
+  <div class="lineItem">
+    <span class='lineItemLabel'>HTTP URL</span>
+    <span class='lineItemValue'>{{type.activeControl.httpURL}}</span>
   </div>
 </section>
 
-<section class='controlInfo'>
-  Type: {{type.activeControl.type}}
-  <div class="select" ng-repeat='option in type.activeControl.options track by $index'>
-    Option {{$index+1}}: {{option.name}}
+<div class='controlHeading'>
+  Control Info
+</div>
+<section class='lineItem'>
+  <span class='lineItemLabel'>Type</span>
+  <span class='lineItemValue'>{{type.activeControl.type}}</span>
+  <div class="lineItem" ng-repeat='option in type.activeControl.options track by $index'>
+    <span class='lineItemLabel'>Option {{$index+1}}</span>
+    <span class='lineItemValue'>{{option.name}}</span>
+
   </div>
 </section>

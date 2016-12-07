@@ -1,22 +1,23 @@
-<nav>
-  <a ui-sref="types_all">< Types</a>
-  {{type.activeType.name}}
-  <a ui-sref="type_edit">Edit</a>
+<nav class='navigation_header'>
+  <a ui-sref="types_all" class="left">< Types</a>
+  <span>{{type.activeType.name}}</span>
+  <a ui-sref="type_edit" class='right'>Edit</a>
 </nav>
 
 <section class='heading'>
 <div class="lineItem">
-Name: {{type.activeType.name}}
+<span class='lineItemLabel'>Name</span><span class='lineItemValue'>{{type.activeType.name}}</span>
 </div>
 <div class="lineItem">
-API: {{type.activeType.api}}
+<span class='lineItemLabel'>API</span><span class='lineItemValue'>{{type.activeType.api}}</span>
 </div>
 </section>
 
-Controls
-<!-- <a ui-sref="control_show">Example Control</a> -->
+<div class='controlHeading'>
+  Controls
+</div>
 <section>
-<div class="lineItem" ng-repeat='control in type.activeType.controls track by $index' ng-click='type.showControl($index)'>
-  {{control.name}}
+<div class="lineItemControl" ng-repeat='control in type.activeType.controls track by $index' ng-click='type.showControl($index)'>
+  <span class='typecontrol'>{{control.name}}</span>
 </div>
 </section>

@@ -103,7 +103,7 @@
       $http.post('/api/devices', self.activeDevice)
       .then(function(response) {
         sessionStorage.setItem('activeDeviceId', JSON.stringify(response.data._id))
-        $state.go('device_show');
+        // $state.go('device_show');
       })
       .catch(function(err) {
         console.log(err)

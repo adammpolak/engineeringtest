@@ -67,8 +67,8 @@
     this.newTypeFunction = function() {
       self.activeType = {name: '', api: '', controls: []};
       self.activeControl = {name: '', httpVerb: '', httpURL: '', type: '', options: []}
-      sessionStorage.setItem('activeType', JSON.stringify(self.activeType))
       sessionStorage.setItem('activeControl', JSON.stringify(self.activeControl));
+      sessionStorage.setItem('activeType', JSON.stringify(self.activeType))
       $state.go('type_new')
     }
 
@@ -89,6 +89,8 @@
       self.activeType.controls.splice(self.activeControlIndex,1);
       //update the activeType in local Storage
       sessionStorage.setItem('activeType', JSON.stringify(self.activeType));
+      self.activeControl = {name: '', httpVerb: '', httpURL: '', type: '', options: []}
+      sessionStorage.setItem('activeControl', JSON.stringify(self.activeControl));
       //go to state
       $state.go('type_new')
     }
